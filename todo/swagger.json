@@ -1,0 +1,151 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0", 
+      "title": "Project CRUD",
+      "description": "My User Project Application API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "host": "localhost:3000", 
+    "basePath": "/",
+    "schemes": ["http"],
+    "consumes": ["application/x-www-form-urlencoded"],
+    "produces": ["application/x-www-form-urlencoded"],
+   
+    "paths":{
+        "/schedule":{
+            "get":{
+                "tags":["schedule"],
+                "summary":"get all schedule",
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "schema":{
+                            "$ref":"#/definitions/schedule"
+                          }
+                    }
+                }
+            },
+            "post":{
+                "tags":["schedule"],
+                "summary":"add schedule",
+                "parameters": [
+                    {
+                      "name": "title",
+                      "in": "formData",
+                      "description": "create a schedule",
+                      "required": true
+                    }
+                ],
+                "produces":["application/x-www-form-urlencoded"],
+                "responses":{
+                    "201":{
+                        "description":"OK",
+                        "schema":{
+                            "$ref":"#/definitions/schedule"
+                          }
+                    }
+                }
+            }
+        },
+        "/schedule/{id}":{
+            "get":{
+                "tags":["schedule"],
+                "summary":"get schedule",
+                "parameters": [
+                    {
+                      "name": "id",
+                      "in": "path",
+                      "description": "schedule id which wants to get",
+                      "required": true,
+                      "type": "integer"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "schema":{
+                            "$ref":"#/definitions/schedule"
+                          }
+                    }
+                }
+            },
+            "patch":{
+                "tags":["schedule"],
+                "summary":"update schedule title",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type":"integer"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "",
+                        "required": true,
+                        "type":"string"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "schema":{
+                            "$ref":"#/definitions/schedule"
+                          }
+                    }
+                }
+            },
+            "delete":{
+                "tags":["schedule"],
+                "summary":"delete schedule",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "",
+                        "required": true,
+                        "type":"integer"
+                    }
+                ],
+                "responses":{
+                    "200":{
+                        "description":"OK",
+                        "schema":{
+                            "$ref":"#/definitions/schedule"
+                          }
+                    }
+                }
+            }
+        }
+    },
+    "definitions":{
+        "schedule":{
+            "required": ["id","title","createdAt","updatedAt"],
+            "properties": { 
+                "id": {
+                    "type":"integer",
+                    "uniqueItems": true,
+                    "example":1
+                },
+                "title": { 
+                    "type":"string",
+                    "example":"test"
+                },
+                "createdAt": {
+                    "type": "date",
+                    "example": "2022-10-29 12:12:44"
+                },
+                "updatedAt": {
+                    "type": "date",
+                    "example": "2022-10-29 12:12:44"
+                }
+            }
+        }
+    }
+}
